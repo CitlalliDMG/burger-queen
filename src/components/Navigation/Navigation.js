@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import AuthUserContext from '../../session/AuthUserContext';
 import * as routes from "../../constants/routes";
 import SignOutButton from '../SignOut/SignOut';
 
-const Navigation = ({ authUser }) =>
-<div className="container">
-  { authUser
-    ? <NavigationAuth />
-    : <NavigationNonAuth />
-  }
-</div>
+const Navigation = () =>
+  <AuthUserContext.Consumer>
+    { authUser => authUser
+      ? <NavigationAuth />
+      : <NavigationNonAuth />
+    }
+  </AuthUserContext.Consumer>
 
 const NavigationAuth = () => (
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
